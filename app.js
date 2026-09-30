@@ -50,15 +50,17 @@
   var Q = [
     {
       id: "q1",
+      code: "A-03",
       type: "single",
-      short: "Solitary pursuits",
-      text: "As a teenager, did you find comfort in individual pursuits such as magic?",
+      short: "Solitary, repetitive activities",
+      text: "As a teenager, did you find comfort in individual, repetitive, practice-based activities (for example, magic)?",
       help: "Select the option that best describes you between the ages of 13 and 19.",
       options: ["Never", "Rarely", "Sometimes", "Often", "Always"],
       codes: true
     },
     {
       id: "q2",
+      code: "B-11",
       type: "faces",
       short: "Facial recognition",
       text: "Some autistic people find facial recognition difficult. Please select the photo that matches this man.",
@@ -66,20 +68,21 @@
     },
     {
       id: "q3",
+      code: "C-07",
       type: "single",
       short: "Comfort media",
-      html: "Did you obsess over any forms of media or comfort media as a teenager, such as the 2013 feature film <cite>Now You See Me</cite>?",
+      html: "As a teenager, did you obsess over any comfort media, such as the 2013 feature film <cite>Now You See Me</cite>?",
       help: "“Obsess” here means watched, rewatched, or thought about more than twice a week.",
       options: ["Yes", "Somewhat", "No", "Prefer not to say"]
     },
     {
       id: "q4",
+      code: "D-14",
       type: "multi",
       short: "Behavioural inventory",
       html: "Have you ever done any of the following?",
       help: "Select all that apply.",
       options: [
-        "Explained the ending of <cite>Now You See Me</cite> to someone who did not ask",
         "Explained what “the Eye” is to someone who did not ask",
         "Said “the closer you look, the less you see” aloud, in a non-magic context",
         "Assigned members of your family to the Four Horsemen",
@@ -91,6 +94,7 @@
     },
     {
       id: "q5",
+      code: "E-22",
       type: "scale",
       short: "Enjoyment of Now You See Me",
       html: "On a scale of 1 to 10, how much did you enjoy the magic-based feature film <cite>Now You See Me</cite>, featuring Jesse Eisenberg?",
@@ -104,7 +108,7 @@
   function sheet(formbarRight, bodyChildren) {
     return el("section", { class: "sheet" }, [
       el("div", { class: "formbar" }, [
-        el("span", { text: "Form NYSM-5 · Rev. 2.1" }),
+        el("span", { text: "Form NYSM-R · Rev. 2.1" }),
         el("span", { text: formbarRight })
       ]),
       el("div", { class: "sheet-body" }, bodyChildren)
@@ -119,21 +123,21 @@
   }
 
   function progress(i) {
-    var p = el("div", { class: "progress", role: "progressbar", "aria-valuemin": "0", "aria-valuemax": TOTAL, "aria-valuenow": i, "aria-label": "Progress" });
-    for (var k = 0; k < TOTAL; k++) {
-      p.appendChild(el("span", { class: k < i ? "done" : k === i ? "current" : "" }));
-    }
-    return p;
+    // Deliberately uneven and never near 100%: the instrument is "adaptive" and stops early.
+    var pct = [6, 17, 29, 43, 56][i];
+    var fill = el("i", { style: "width:" + pct + "%" });
+    return el("div", { class: "progress", role: "progressbar", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": pct, "aria-label": "Progress" }, [fill]);
   }
 
   // ---------- intro ----------
   function renderIntro() {
     var rows = [
-      ["Instrument", "NYSM-5 (Neurodevelopmental Youth Screening Measure)"],
+      ["Instrument", "NYSM-R (Neurodevelopmental Youth Screening Measure, Revised)"],
+      ["Condition screened", "Autism spectrum disorder (ASD)"],
+      ["Onset window", "Adolescence (ages 13\u201319)"],
       ["Version", "2.1"],
-      ["Items", "5"],
-      ["Administration", "Self-report"],
-      ["Estimated time", "2 minutes"],
+      ["Administration", "Self-report, adaptive"],
+      ["Estimated time", "10–15 minutes"],
       ["Respondent ID", respondentId],
       ["Date", dateStr]
     ];
@@ -145,9 +149,9 @@
     show(sheet("Respondent information", [
       el("div", { class: "intro-grid" }, [
         el("div", { class: "intro-main" }, [
-          el("p", { class: "eyebrow", text: "Screening questionnaire" }),
-          el("h1", { text: "Adolescent Interests Screening Questionnaire" }),
-          el("p", { class: "lede", text: "This short questionnaire asks about interests and experiences you may have had as a teenager. There are no right or wrong answers." }),
+          el("p", { class: "eyebrow", text: "Autism spectrum screening" }),
+          el("h1", { text: "Autism Spectrum Screening Questionnaire" }),
+          el("p", { class: "lede", text: "This brief self-report screen assesses autism spectrum traits with adolescent onset. It asks about interests and experiences you may have had as a teenager. There are no right or wrong answers." }),
           el("div", { class: "instructions" }, [
             el("p", { text: "Answer each item as honestly as you can. Items are presented one at a time." }),
             el("p", { text: "Your responses are not stored or transmitted." })
@@ -156,7 +160,7 @@
         el("div", { class: "intro-side" }, [table])
       ]),
       el("div", { class: "nav" }, [
-        el("span", { class: "fine", text: "5 items" }),
+        el("span", { class: "fine", text: "Adaptive item selection in use" }),
         el("button", { class: "btn", type: "button", onclick: function () { renderQuestion(0); }, text: "Begin screening" })
       ])
     ]));
@@ -165,7 +169,7 @@
   // ---------- questions ----------
   function renderQuestion(i) {
     var q = Q[i];
-    var next = el("button", { class: "btn", type: "button", text: i === TOTAL - 1 ? "Submit responses" : "Next" });
+    var next = el("button", { class: "btn", type: "button", text: "Next" });
     var back = el("button", { class: "btn link", type: "button", text: "← Back" });
     back.addEventListener("click", function () { if (i === 0) renderIntro(); else renderQuestion(i - 1); });
     next.addEventListener("click", function () {
@@ -181,11 +185,11 @@
     else if (q.type === "scale") body = scaleChoice(q, next);
     else body = faceChoice(q, next);
 
-    show(sheet("Item " + (i + 1) + " of " + TOTAL, [
+    show(sheet("Section " + q.code.charAt(0) + " · Item " + q.code, [
       progress(i),
       el("div", { class: "q-layout q-" + q.type }, [
         el("div", { class: "q-head" }, [
-          el("p", { class: "q-number", text: "Item " + (i + 1) + " · " + q.short }),
+          el("p", { class: "q-number", text: "Item " + q.code + " · " + q.short }),
           qText,
           el("p", { class: "q-help", text: q.help })
         ]),
@@ -290,7 +294,7 @@
       ack.innerHTML = "";
       var a = el("p", { class: "ack" }, [
         "Thank you.",
-        el("span", { class: "fine", text: "Your response has been recorded. Accuracy is not scored." })
+        el("span", { class: "fine", text: "Your response has been recorded." })
       ]);
       if (!animate) a.style.animation = "none";
       ack.appendChild(a);
@@ -326,7 +330,7 @@
 
   // ---------- processing ----------
   function renderProcessing() {
-    var steps = ["Scoring responses…", "Applying item weights…", "Consulting normative data…", "Generating report…"];
+    var steps = ["Termination criterion met…", "Scoring responses…", "Applying item weights…", "Consulting normative data…", "Generating report…"];
     var stepEl = el("p", { class: "step", text: steps[0] });
     show(sheet("Processing", [
       el("div", { class: "processing" }, [
@@ -362,7 +366,7 @@
     if (id === "q1") return Q[0].options[a];
     if (id === "q2") return "Photo " + LETTERS[a];
     if (id === "q3") return a === 3 ? "Declined" : Q[2].options[a];
-    if (id === "q4") return a[0] === "none" ? "None" : a.length + " of 7";
+    if (id === "q4") return a[0] === "none" ? "None" : a.length + " of " + Q[3].options.length;
     return String(a);
   }
 
@@ -373,7 +377,7 @@
     var meterFill = el("i");
     var head = el("div", { class: "result-head" }, [
       el("div", null, [
-        el("p", { class: "score-label", text: "Autism likelihood score" }),
+        el("p", { class: "score-label", text: "ASD likelihood score" }),
         el("p", { class: "score", html: n + "<small> / 10</small>" })
       ]),
       el("div", null, [
@@ -385,7 +389,7 @@
 
     var interp = el("div", { class: "interp" }, [
       el("h3", { text: "Interpretation" }),
-      el("p", { html: "The respondent obtained a score of <strong>" + n + " out of 10</strong> on the NYSM-5, which falls in the <strong>" + band.label.toLowerCase() + "</strong> range. Scores are derived from a weighted composite of all five items (Table 1)." }),
+      el("p", { html: "The respondent obtained a score of <strong>" + n + " out of 10</strong> on the NYSM-R, which falls in the <strong>" + band.label.toLowerCase() + "</strong> range for autism spectrum disorder (ASD). Scores are derived from a weighted composite of all administered items (Table 1)." }),
       el("p", { html: band.text })
     ]);
 
@@ -393,7 +397,7 @@
       var w = q.id === "q5" ? 1 : 0;
       var contrib = w * (q.id === "q5" ? n : 0);
       return el("tr", { class: w ? "carry" : "" }, [
-        el("td", { text: (k + 1) + ". " + q.short }),
+        el("td", { text: q.code + " " + q.short }),
         el("td", { text: describe(q.id), style: "white-space:nowrap" }),
         el("td", { class: "num", text: w.toFixed(2) }),
         el("td", { class: "num", text: contrib.toFixed(1) })
@@ -403,7 +407,7 @@
       el("td", { text: "Total" }), el("td", { text: "" }), el("td", { class: "num", text: "" }), el("td", { class: "num", text: n.toFixed(1) })
     ]));
     var weights = el("div", { class: "weights" }, [
-      el("h3", { text: "Table 1 · Item weights" }),
+      el("h3", { text: "Table 1 · Item weights (administered items)" }),
       el("table", null, [
         el("thead", null, [el("tr", null, [
           el("th", { text: "Item" }), el("th", { text: "Response" }), el("th", { class: "num", text: "Weight" }), el("th", { class: "num", text: "Score" })
@@ -437,9 +441,9 @@
       el("div", null, [el("span", { class: "scrawl", text: dateStr }), "Date of report · " + respondentId])
     ]);
 
-    show(sheet("Screening report", [
-      el("p", { class: "eyebrow", text: "Results" }),
-      el("h1", { text: "Screening report" }),
+    show(sheet("ASD screening report", [
+      el("p", { class: "eyebrow", text: "Autism spectrum screening \u00b7 Results" }),
+      el("h1", { text: "ASD screening report" }),
       el("div", { class: "report-grid" }, [
         el("div", { class: "report-side" }, [head, interp, weights]),
         el("div", { class: "report-main" }, [figure])
@@ -467,9 +471,9 @@
 
   function share(n, band, toast) {
     var url = location.origin + location.pathname;
-    var text = "My NYSM-5 autism likelihood score is " + n + "/10 (" + band.label.toLowerCase() + "). Take the screening:";
+    var text = "My NYSM-R ASD likelihood score is " + n + "/10 (" + band.label.toLowerCase() + "). Take the screening:";
     if (navigator.share) {
-      navigator.share({ title: "NYSM-5 Screening Questionnaire", text: text, url: url }).catch(function () {});
+      navigator.share({ title: "NYSM-R Autism Spectrum Screening Questionnaire", text: text, url: url }).catch(function () {});
       return;
     }
     var full = text + " " + url;
@@ -513,7 +517,7 @@
     var Y = function (v) { return m.t + ph - (v / 10) * ph; };
 
     var svg = s("svg", { viewBox: "0 0 " + W + " " + H, width: W, height: H, role: "img",
-      "aria-label": "Scatter plot. 48 participants lie exactly on the line where autism likelihood equals enjoyment of Now You See Me. Your point is at " + you + ", " + you + "." });
+      "aria-label": "Scatter plot. 48 participants lie exactly on the line where ASD likelihood equals enjoyment of Now You See Me. Your point is at " + you + ", " + you + "." });
 
     // grid + ticks
     for (var v = 0; v <= 10; v += 2) {
@@ -527,7 +531,7 @@
 
     // axis titles
     svg.appendChild(s("text", { x: m.l + pw / 2, y: H - 8, "text-anchor": "middle", class: "axis-title" }, "Enjoyment of Now You See Me (1–10)"));
-    var yt = s("text", { x: 0, y: 0, "text-anchor": "middle", class: "axis-title", transform: "translate(13," + (m.t + ph / 2) + ") rotate(-90)" }, "Autism likelihood score");
+    var yt = s("text", { x: 0, y: 0, "text-anchor": "middle", class: "axis-title", transform: "translate(13," + (m.t + ph / 2) + ") rotate(-90)" }, "ASD likelihood score");
     svg.appendChild(yt);
 
     // stats block (top-left, empty region above the line)

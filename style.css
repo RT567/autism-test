@@ -159,18 +159,19 @@ h2 { font-size: clamp(1.25rem, 3.6vw, 1.55rem); }
 
 /* ---------- progress ---------- */
 .progress {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
-  margin: 0 0 22px;
-}
-.progress span {
   height: 4px;
   border-radius: 2px;
   background: var(--rule);
+  overflow: hidden;
+  margin: 0 0 22px;
 }
-.progress span.done { background: var(--ink-accent); }
-.progress span.current { background: var(--ink-accent); opacity: .45; }
+.progress i {
+  display: block;
+  height: 100%;
+  background: var(--ink-accent);
+  border-radius: 2px;
+  transition: width 400ms ease-out;
+}
 
 /* ---------- question ---------- */
 .q-number {
@@ -375,6 +376,7 @@ legend { padding: 0; }
 
 .nav { flex-wrap: wrap; }
 .nav .ack-slot { flex: 1 1 auto; }
+.nav > .btn:last-child { margin-left: auto; }
 .nav .ack-slot:empty { display: none; }
 .ack {
   margin: 0;
