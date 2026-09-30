@@ -190,6 +190,7 @@ h2 { font-size: clamp(1.25rem, 3.6vw, 1.55rem); }
   margin: 0 0 8px;
 }
 .q-help { color: var(--muted); font-size: 0.88rem; margin: 0 0 18px; }
+.q-head > .q-text:last-child { margin-bottom: 18px; }
 
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 legend { padding: 0; }

@@ -47,6 +47,8 @@ docs 01 and 02 wherever they conflict.
   activities (for example, magic)?" (short label "Solitary, repetitive activities").
 - Q3 now reads "As a teenager, did you obsess over any comfort media, such as the 2013 feature film
   *Now You See Me*?"
+- Q5 now reads "…how much did you enjoy the 2013 magic-based feature film *Now You See Me*, featuring
+  Jesse Eisenberg?" and has no help text (empty `help` hides the `.q-help` line).
 - Q2's post-pick acknowledgement is now just "Thank you. Your response has been recorded." The line
   "Accuracy is not scored." was removed.
 - Q4: the "Explained the ending of *Now You See Me* to someone who did not ask" option was removed.
@@ -62,4 +64,4 @@ docs 01 and 02 wherever they conflict.
 
 - When the nav row wraps (the intro on phones), the primary button stays right-aligned
   (`.nav > .btn:last-child { margin-left: auto }`).
-- Cache-bust is now `?v=9` on `style.css` and `app.js`. Bump both on the next change.
+- Cache-bust is now `?v=10` on `style.css` and `app.js`. Bump both on the next change.

@@ -98,8 +98,8 @@
       code: "E-22",
       type: "scale",
       short: "Enjoyment of Now You See Me",
-      html: "On a scale of 1 to 10, how much did you enjoy the magic-based feature film <cite>Now You See Me</cite>, featuring Jesse Eisenberg?",
-      help: "Select one number. Please be honest; this item is important."
+      html: "On a scale of 1 to 10, how much did you enjoy the 2013 magic-based feature film <cite>Now You See Me</cite>, featuring Jesse Eisenberg?",
+      help: ""
     }
   ];
 
@@ -192,7 +192,7 @@
         el("div", { class: "q-head" }, [
           el("p", { class: "q-number", text: "Item " + q.code + " · " + q.short }),
           qText,
-          el("p", { class: "q-help", text: q.help })
+          q.help ? el("p", { class: "q-help", text: q.help }) : null
         ]),
         el("div", { class: "q-body" }, [body])
       ]),
