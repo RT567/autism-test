@@ -6,3 +6,4 @@ with Rob. Convention: `NN-topic-YYYY-MM-DD.md`, numbered in order; add a new dat
 significant change or decision, and keep the newest doc's "current state" accurate.
 
 1. [01-build-and-deploy-2026-09-30.md](01-build-and-deploy-2026-09-30.md) — Rob's brief, the five questions (incl. the invented Q4), design decisions, photo sources/licences, the chart, deployment, gotchas
+2. [02-desktop-layout-and-credits-2026-09-30.md](02-desktop-layout-and-credits-2026-09-30.md) — desktop layout tiers (intro/question two-column, Q2 lineup row, side-by-side report), footer disclaimer + visible credits removed at Rob's request, attributions moved to `CREDITS.md`

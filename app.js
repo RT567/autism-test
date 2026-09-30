@@ -143,13 +143,17 @@
       }))
     ]);
     show(sheet("Respondent information", [
-      el("p", { class: "eyebrow", text: "Screening questionnaire" }),
-      el("h1", { text: "Adolescent Interests Screening Questionnaire" }),
-      el("p", { class: "lede", text: "This short questionnaire asks about interests and experiences you may have had as a teenager. There are no right or wrong answers." }),
-      table,
-      el("div", { class: "instructions" }, [
-        el("p", { text: "Answer each item as honestly as you can. Items are presented one at a time." }),
-        el("p", { text: "Your responses are not stored or transmitted." })
+      el("div", { class: "intro-grid" }, [
+        el("div", { class: "intro-main" }, [
+          el("p", { class: "eyebrow", text: "Screening questionnaire" }),
+          el("h1", { text: "Adolescent Interests Screening Questionnaire" }),
+          el("p", { class: "lede", text: "This short questionnaire asks about interests and experiences you may have had as a teenager. There are no right or wrong answers." }),
+          el("div", { class: "instructions" }, [
+            el("p", { text: "Answer each item as honestly as you can. Items are presented one at a time." }),
+            el("p", { text: "Your responses are not stored or transmitted." })
+          ])
+        ]),
+        el("div", { class: "intro-side" }, [table])
       ]),
       el("div", { class: "nav" }, [
         el("span", { class: "fine", text: "5 items" }),
@@ -179,11 +183,15 @@
 
     show(sheet("Item " + (i + 1) + " of " + TOTAL, [
       progress(i),
-      el("p", { class: "q-number", text: "Item " + (i + 1) + " · " + q.short }),
-      qText,
-      el("p", { class: "q-help", text: q.help }),
-      body,
-      el("div", { class: "nav" }, [back, next])
+      el("div", { class: "q-layout q-" + q.type }, [
+        el("div", { class: "q-head" }, [
+          el("p", { class: "q-number", text: "Item " + (i + 1) + " · " + q.short }),
+          qText,
+          el("p", { class: "q-help", text: q.help })
+        ]),
+        el("div", { class: "q-body" }, [body])
+      ]),
+      el("div", { class: "nav" }, [back, body.ackSlot || null, next])
     ]));
   }
 
@@ -262,13 +270,15 @@
     var picked = answers[q.id];
     next.disabled = picked == null;
 
-    wrap.appendChild(el("figure", { class: "face-ref", style: "margin:0 0 18px" }, [
+    var lineup = el("div", { class: "lineup" });
+    wrap.appendChild(lineup);
+    lineup.appendChild(el("figure", { class: "face-ref" }, [
       el("img", { src: "img/subject.jpg", alt: "Reference photograph of the subject", width: "480", height: "600" }),
-      el("figcaption", { class: "ref-meta", html: "<strong>Reference subject</strong><br>Photograph 1 of 1<br>Subject ID: S-0004" })
+      el("figcaption", { class: "ref-meta", html: "<strong>Reference subject</strong><br>Subject ID: S-0004" })
     ]));
 
     var grid = el("div", { class: "faces", role: "group", "aria-label": "Candidate photographs" });
-    var ack = el("div", { "aria-live": "polite" });
+    var ack = el("div", { class: "ack-slot", "aria-live": "polite" });
     var buttons = [];
 
     function reveal(k, animate) {
@@ -303,8 +313,9 @@
       buttons.push(b);
       grid.appendChild(b);
     });
-    wrap.appendChild(grid);
+    lineup.appendChild(grid);
     wrap.appendChild(ack);
+    wrap.ackSlot = ack;
 
     if (picked != null) {
       buttons.forEach(function (bb) { bb.querySelector(".tick").style.visibility = "visible"; });
@@ -429,10 +440,10 @@
     show(sheet("Screening report", [
       el("p", { class: "eyebrow", text: "Results" }),
       el("h1", { text: "Screening report" }),
-      head,
-      interp,
-      weights,
-      figure,
+      el("div", { class: "report-grid" }, [
+        el("div", { class: "report-side" }, [head, interp, weights]),
+        el("div", { class: "report-main" }, [figure])
+      ]),
       sig,
       el("div", { class: "actions" }, [shareBtn, retake, toast])
     ]));
@@ -495,7 +506,7 @@
   function drawChart(box, you, animate) {
     box.innerHTML = "";
     var W = Math.max(280, box.clientWidth || 600);
-    var H = Math.round(Math.min(420, Math.max(270, W * 0.68)));
+    var H = Math.round(Math.min(480, Math.max(270, W * (W > 500 ? 0.8 : 0.68))));
     var m = { t: 26, r: 14, b: 46, l: 50 };
     var pw = W - m.l - m.r, ph = H - m.t - m.b;
     var X = function (v) { return m.l + (v / 10) * pw; };
@@ -533,7 +544,7 @@
     // participants
     var pts = [];
     PARTICIPANTS.forEach(function (x, i) {
-      var c = s("circle", { cx: X(x), cy: Y(x), r: W < 440 ? 3.6 : 4.5, fill: "var(--series-1)", stroke: "var(--sheet)", "stroke-width": W < 440 ? 0 : 2, class: animate ? "pt" : "" });
+      var c = s("circle", { cx: X(x), cy: Y(x), r: W < 440 ? 3.6 : 4.5, fill: "var(--series-1)", stroke: "var(--sheet)", "stroke-width": 0, class: animate ? "pt" : "" });
       if (animate) c.style.animationDelay = (300 + i * 18) + "ms";
       svg.appendChild(c);
       pts.push({ x: X(x), y: Y(x), label: "Participant " + (i + 1), v: x });

@@ -1,2 +1,4 @@
 {"id":"int-0434ea5f","kind":"field_change","created_at":"2026-09-30T02:22:48.933255203Z","actor":"Rob","issue_id":"autism-test-dxv","extra":{"field":"status","new_value":"in_progress","old_value":"open"}}
 {"id":"int-da65b396","kind":"field_change","created_at":"2026-09-30T02:36:14.734001752Z","actor":"Rob","issue_id":"autism-test-dxv","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Built and live at https://rt567.github.io/autism-test/"}}
+{"id":"int-2cfbc9f3","kind":"field_change","created_at":"2026-09-30T02:38:06.240038001Z","actor":"Rob","issue_id":"autism-test-ngv","extra":{"field":"status","new_value":"in_progress","old_value":"open"}}
+{"id":"int-75ad0d7f","kind":"field_change","created_at":"2026-09-30T02:44:09.605694566Z","actor":"Rob","issue_id":"autism-test-ngv","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Desktop layout shipped; footer/credits moved to CREDITS.md"}}

@@ -45,8 +45,8 @@ One screen at a time, rendered by `app.js` into `<main id="app">`:
    p < 0.001), least-squares line, "You (N)" plotted on the line in orange, hover/tap tooltip. Signed by
    "J. D. Horseman, Reviewing clinician". Share (navigator.share, else clipboard) and Retake.
 
-Footer: tiny "Not a real medical test. The institute is also not real. Made with love for a brother."
-plus collapsible image credits.
+Footer (removed later the same day at Rob's request, see doc 02): tiny "Not a real medical test…"
+plus collapsible image credits. Attributions now live in `CREDITS.md`.
 
 Years checked: *Now You See Me* 2013, *NYSM 2* 2016, *Now You See Me: Now You Don't* 2025.
 
