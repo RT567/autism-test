@@ -28,12 +28,18 @@ docs 01 and 02 wherever they conflict.
 - Items carry non-sequential bank codes, as if adaptively selected from a larger pool: A-03, B-11,
   C-07, D-14, E-22 (`code` field in `Q`). The form bar shows "Section A · Item A-03" and the item
   label shows "Item A-03 · …".
-- The segmented 5-step progress bar is now one continuous bar with uneven widths
-  (6/17/29/43/56%, see `progress()`). It never gets near 100%, because the "adaptive" test ends
-  early. The processing screen opens with "Termination criterion met…".
+- The segmented 5-step progress bar is now one continuous bar. Rob's final call is that it must be
+  faithful: the width is (item index + 1) / 5, so it reaches 100% on the last item (`progress()`).
+  For a short while it used uneven widths that stopped around 56%. No total count is ever shown as
+  text. The processing screen opens with "Termination criterion met…".
 - The last item's button is "Next", not "Submit responses".
-- The report table is titled "Table 1 · Item weights (administered items)" and uses the item codes.
-  The interpretation says "all administered items" instead of "all five items".
+- **The item-weights table is gone** (Rob: it made it too obvious that the score is just the last
+  answer). Nothing on the page says or implies that items 1–4 carry zero weight. The interpretation
+  now says scores are "referenced against age-matched normative data from the 2019 validation cohort
+  (Figure 1)". The score still equals the Q5 answer; it just isn't explained. On desktop the left
+  column is balanced with a "Recommended next steps" list (retain this report; discuss concerns with
+  a qualified clinician; avoid rewatching *Now You See Me* in the 48 hours before any follow-up
+  assessment). The chart column is no longer sticky.
 
 ## Copy tweaks
 
@@ -46,15 +52,14 @@ docs 01 and 02 wherever they conflict.
 - Q4: the "Explained the ending of *Now You See Me* to someone who did not ask" option was removed.
   The remaining six keep their escalating order (the Eye, the tagline, Four Horsemen, NYSM 2, card
   flourish, "obvious" twist), plus "None of the above".
-- Q4 gained "Reminded a family member that the first rule of magic is to \"always be the smartest guy in
-  the room\"". The phrasing is Daniel Atlas's line as given on Wikiquote: "First rule of magic: always be
-  the smartest guy in the room." It sits after the card flourish and before the "obvious" twist, so
-  it is family-directed lecturing rather than a second quote-said-aloud item. Q4 still fits at
-  1366×768.
+- Q4 gained "Often considered yourself the smartest in the room" (Rob's wording). It nods to Atlas's
+  "First rule of magic: always be the smartest guy in the room" and sits after the card flourish,
+  before the "obvious" twist. The stem is unchanged. An earlier version briefly used a
+  "reminded a family member that the first rule of magic…" wording. Q4 still fits at 1366×768.
 - The disclaimer and on-page credits stay removed. Attributions remain in `CREDITS.md`.
 
 ## Minor
 
 - When the nav row wraps (the intro on phones), the primary button stays right-aligned
   (`.nav > .btn:last-child { margin-left: auto }`).
-- Cache-bust is now `?v=6` on `style.css` and `app.js`. Bump both on the next change.
+- Cache-bust is now `?v=9` on `style.css` and `app.js`. Bump both on the next change.

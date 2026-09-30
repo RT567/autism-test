@@ -88,7 +88,7 @@
         "Assigned members of your family to the Four Horsemen",
         "Watched <cite>Now You See Me 2</cite> (2016) and defended it",
         "Attempted a card flourish at a family meal",
-        "Reminded a family member that the first rule of magic is to “always be the smartest guy in the room”",
+        "Often considered yourself the smartest in the room",
         "Insisted the twist was “obvious if you were paying attention”"
       ],
       none: "None of the above"
@@ -124,8 +124,8 @@
   }
 
   function progress(i) {
-    // Deliberately uneven and never near 100%: the instrument is "adaptive" and stops early.
-    var pct = [6, 17, 29, 43, 56][i];
+    // Faithful progress (reaches 100% on the last item); the total is never shown as text.
+    var pct = Math.round((i + 1) / TOTAL * 100);
     var fill = el("i", { style: "width:" + pct + "%" });
     return el("div", { class: "progress", role: "progressbar", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": pct, "aria-label": "Progress" }, [fill]);
   }
@@ -362,15 +362,6 @@
     return BANDS[BANDS.length - 1];
   }
 
-  function describe(id) {
-    var a = answers[id];
-    if (id === "q1") return Q[0].options[a];
-    if (id === "q2") return "Photo " + LETTERS[a];
-    if (id === "q3") return a === 3 ? "Declined" : Q[2].options[a];
-    if (id === "q4") return a[0] === "none" ? "None" : a.length + " of " + Q[3].options.length;
-    return String(a);
-  }
-
   function renderResult() {
     var n = answers.q5;
     var band = bandFor(n);
@@ -390,30 +381,16 @@
 
     var interp = el("div", { class: "interp" }, [
       el("h3", { text: "Interpretation" }),
-      el("p", { html: "The respondent obtained a score of <strong>" + n + " out of 10</strong> on the NYSM-R, which falls in the <strong>" + band.label.toLowerCase() + "</strong> range for autism spectrum disorder (ASD). Scores are derived from a weighted composite of all administered items (Table 1)." }),
+      el("p", { html: "The respondent obtained a score of <strong>" + n + " out of 10</strong> on the NYSM-R, which falls in the <strong>" + band.label.toLowerCase() + "</strong> range for autism spectrum disorder (ASD). Scores are referenced against age-matched normative data from the 2019 validation cohort (Figure 1)." }),
       el("p", { html: band.text })
     ]);
 
-    var rows = Q.map(function (q, k) {
-      var w = q.id === "q5" ? 1 : 0;
-      var contrib = w * (q.id === "q5" ? n : 0);
-      return el("tr", { class: w ? "carry" : "" }, [
-        el("td", { text: q.code + " " + q.short }),
-        el("td", { text: describe(q.id), style: "white-space:nowrap" }),
-        el("td", { class: "num", text: w.toFixed(2) }),
-        el("td", { class: "num", text: contrib.toFixed(1) })
-      ]);
-    });
-    rows.push(el("tr", { class: "carry" }, [
-      el("td", { text: "Total" }), el("td", { text: "" }), el("td", { class: "num", text: "" }), el("td", { class: "num", text: n.toFixed(1) })
-    ]));
-    var weights = el("div", { class: "weights" }, [
-      el("h3", { text: "Table 1 · Item weights (administered items)" }),
-      el("table", null, [
-        el("thead", null, [el("tr", null, [
-          el("th", { text: "Item" }), el("th", { text: "Response" }), el("th", { class: "num", text: "Weight" }), el("th", { class: "num", text: "Score" })
-        ])]),
-        el("tbody", null, rows)
+    var steps = el("div", { class: "nextsteps" }, [
+      el("h3", { text: "Recommended next steps" }),
+      el("ol", null, [
+        el("li", null, [el("span", { text: "Retain this report for your records." })]),
+        el("li", null, [el("span", { text: "If you have concerns about this result, discuss it with a qualified clinician." })]),
+        el("li", null, [el("span", { html: "Avoid rewatching <cite>Now You See Me</cite> (2013) in the 48 hours before any follow-up assessment." })])
       ])
     ]);
 
@@ -446,7 +423,7 @@
       el("p", { class: "eyebrow", text: "Autism spectrum screening \u00b7 Results" }),
       el("h1", { text: "ASD screening report" }),
       el("div", { class: "report-grid" }, [
-        el("div", { class: "report-side" }, [head, interp, weights]),
+        el("div", { class: "report-side" }, [head, interp, steps]),
         el("div", { class: "report-main" }, [figure])
       ]),
       sig,
