@@ -88,6 +88,7 @@
         "Assigned members of your family to the Four Horsemen",
         "Watched <cite>Now You See Me 2</cite> (2016) and defended it",
         "Attempted a card flourish at a family meal",
+        "Reminded a family member that the first rule of magic is to “always be the smartest guy in the room”",
         "Insisted the twist was “obvious if you were paying attention”"
       ],
       none: "None of the above"
@@ -137,7 +138,7 @@
       ["Onset window", "Adolescence (ages 13\u201319)"],
       ["Version", "2.1"],
       ["Administration", "Self-report, adaptive"],
-      ["Estimated time", "10–15 minutes"],
+      ["Estimated time", "2–4 minutes"],
       ["Respondent ID", respondentId],
       ["Date", dateStr]
     ];

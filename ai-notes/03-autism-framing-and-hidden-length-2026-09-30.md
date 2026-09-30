@@ -23,7 +23,7 @@ docs 01 and 02 wherever they conflict.
 - **NYSM-5 is renamed NYSM-R** ("Neurodevelopmental Youth Screening Measure, Revised"). The old name
   read as "5 questions".
 - The intro table no longer has an "Items" row. Administration is "Self-report, adaptive" and
-  estimated time is "10–15 minutes". In the intro nav, "5 items" became "Adaptive item selection in
+  estimated time is "2–4 minutes" (Rob's later call; it had briefly been "10–15 minutes"). In the intro nav, "5 items" became "Adaptive item selection in
   use".
 - Items carry non-sequential bank codes, as if adaptively selected from a larger pool: A-03, B-11,
   C-07, D-14, E-22 (`code` field in `Q`). The form bar shows "Section A · Item A-03" and the item
@@ -46,10 +46,15 @@ docs 01 and 02 wherever they conflict.
 - Q4: the "Explained the ending of *Now You See Me* to someone who did not ask" option was removed.
   The remaining six keep their escalating order (the Eye, the tagline, Four Horsemen, NYSM 2, card
   flourish, "obvious" twist), plus "None of the above".
+- Q4 gained "Reminded a family member that the first rule of magic is to \"always be the smartest guy in
+  the room\"". The phrasing is Daniel Atlas's line as given on Wikiquote: "First rule of magic: always be
+  the smartest guy in the room." It sits after the card flourish and before the "obvious" twist, so
+  it is family-directed lecturing rather than a second quote-said-aloud item. Q4 still fits at
+  1366×768.
 - The disclaimer and on-page credits stay removed. Attributions remain in `CREDITS.md`.
 
 ## Minor
 
 - When the nav row wraps (the intro on phones), the primary button stays right-aligned
   (`.nav > .btn:last-child { margin-left: auto }`).
-- Cache-bust is now `?v=5` on `style.css` and `app.js`. Bump both on the next change.
+- Cache-bust is now `?v=6` on `style.css` and `app.js`. Bump both on the next change.
