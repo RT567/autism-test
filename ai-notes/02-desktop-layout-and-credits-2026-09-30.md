@@ -46,3 +46,9 @@ superseded by this change.
 Caveat for the future: the CC BY / CC BY-SA licences ask for attribution "reasonable to the medium".
 Credits that exist only in the repo, not on the page, are a weaker form of that. If this ever matters,
 the cheap fix is a small "Photo credits" link to `CREDITS.md` on the page.
+
+## Cache busting
+
+GitHub Pages serves assets with `max-age=600`, so a browser that has cached the old `app.js` pairs it
+with the new HTML and CSS. `index.html` now loads `style.css?v=2` and `app.js?v=2`. **Bump the `?v=` on
+both whenever either file changes.**
