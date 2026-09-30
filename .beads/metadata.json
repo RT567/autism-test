@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "autism_test",
+  "project_id": "bacc5074-9783-4d7f-b452-a5dc0b17c05e"
+}
