@@ -143,7 +143,6 @@
     var rows = [
       ["Instrument", "NYSM-R (Neurodevelopmental Youth Screening Measure, Revised)"],
       ["Condition screened", "Autism spectrum disorder (ASD)"],
-      ["Onset window", "Adolescence (ages 13\u201319)"],
       ["Version", "2.1"],
       ["Administration", "Self-report, adaptive"],
       ["Estimated time", "2–4 minutes"],
