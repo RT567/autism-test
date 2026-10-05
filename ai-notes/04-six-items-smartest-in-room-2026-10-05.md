@@ -30,3 +30,9 @@ report now goes score → chart → interpretation → next steps (`.report-side
 flex `order`), and on phones the score head is a compact two-column row with a smaller h1 and smaller
 interpretation text. At 390×844 the whole chart ends at y≈724, so it's on screen when the report
 appears. Desktop (≥960px, side-by-side) is unchanged. Assets now `?v=12`.
+
+## Intro trimmed (later the same day)
+Removed from the intro at Rob's request: "Answer each item as honestly as you can. Items are presented one
+at a time.", the whole "Your responses are not stored or transmitted." note box, the "Onset window" row of
+the respondent table, and the "Adaptive item selection in use" fine print beside Begin. Kept (Rob): the
+"explained the Eye to one of them already" line in the top-band result text. Assets ?v=18.
