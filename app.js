@@ -2,7 +2,7 @@
   "use strict";
 
   var app = document.getElementById("app");
-  var TOTAL = 5;
+  var TOTAL = 6;
 
   // ---------- helpers ----------
   function el(tag, attrs, children) {
@@ -60,24 +60,33 @@
     },
     {
       id: "q2",
-      code: "B-11",
-      type: "faces",
-      short: "Facial recognition",
-      text: "Some autistic people find facial recognition difficult. Please select the photo that matches this man.",
-      help: "Take as long as you need. Select one photograph."
+      code: "B-09",
+      type: "single",
+      short: "Social self-perception",
+      text: "When you’re in a room of people, how smart do you feel relative to everyone else?",
+      help: "Think of a typical gathering, such as a party, a lecture, or a family meal.",
+      options: ["The smartest in the room", "Smarter than most", "About as smart as everyone else", "Less smart than most", "The least smart in the room"]
     },
     {
       id: "q3",
       code: "C-07",
       type: "single",
       short: "Comfort media",
-      html: "As a teenager, did you obsess over any comfort media, such as the 2013 feature film <cite>Now You See Me</cite>?",
+      text: "As a teenager, did you obsess over any comfort media? For example, a film or series of films that you returned to again and again.",
       help: "“Obsess” here means watched, rewatched, or thought about more than twice a week.",
       options: ["Yes", "Somewhat", "No", "Prefer not to say"]
     },
     {
       id: "q4",
-      code: "D-14",
+      code: "D-11",
+      type: "faces",
+      short: "Facial recognition",
+      text: "Some autistic people find facial recognition difficult. Please select the photo that matches this man.",
+      help: "Take as long as you need. Select one photograph."
+    },
+    {
+      id: "q5",
+      code: "E-14",
       type: "multi",
       short: "Behavioural inventory",
       html: "Have you ever done any of the following?",
@@ -88,14 +97,14 @@
         "Assigned members of your family to the Four Horsemen",
         "Watched <cite>Now You See Me 2</cite> (2016) and defended it",
         "Attempted a card flourish at a family meal",
-        "Often considered yourself the smartest in the room",
+        "Performed a card trick for someone who had said no",
         "Insisted the twist was “obvious if you were paying attention”"
       ],
       none: "None of the above"
     },
     {
-      id: "q5",
-      code: "E-22",
+      id: "q6",
+      code: "F-22",
       type: "scale",
       short: "Enjoyment of Now You See Me",
       html: "On a scale of 1 to 10, how much did you enjoy the 2013 magic-based feature film <cite>Now You See Me</cite>, featuring Jesse Eisenberg?",
@@ -363,7 +372,7 @@
   }
 
   function renderResult() {
-    var n = answers.q5;
+    var n = answers.q6;
     var band = bandFor(n);
 
     var meterFill = el("i");
