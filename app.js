@@ -97,7 +97,7 @@
         "Watched <cite>Now You See Me 2</cite> (2016) and defended it",
         "Attempted a card flourish at a family meal",
         "Performed a card trick for someone who had said no",
-        "Insisted the twist was “obvious if you were paying attention”"
+        "Refused to explain how you did something “for their own protection”"
       ],
       none: "None of the above"
     },
