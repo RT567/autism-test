@@ -164,7 +164,6 @@
         el("div", { class: "intro-side" }, [table])
       ]),
       el("div", { class: "nav" }, [
-        el("span", { class: "fine", text: "Adaptive item selection in use" }),
         el("button", { class: "btn", type: "button", onclick: function () { renderQuestion(0); }, text: "Begin screening" })
       ])
     ]));
