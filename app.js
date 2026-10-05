@@ -159,10 +159,7 @@
         el("div", { class: "intro-main" }, [
           el("p", { class: "eyebrow", text: "Autism spectrum screening" }),
           el("h1", { text: "Autism Spectrum Screening Questionnaire" }),
-          el("p", { class: "lede", text: "This brief self-report screen assesses autism spectrum traits with adolescent onset. It asks about interests and experiences you may have had as a teenager. There are no right or wrong answers." }),
-          el("div", { class: "instructions" }, [
-            el("p", { text: "Your responses are not stored or transmitted." })
-          ])
+          el("p", { class: "lede", text: "This brief self-report screen assesses autism spectrum traits with adolescent onset. It asks about interests and experiences you may have had as a teenager. There are no right or wrong answers." })
         ]),
         el("div", { class: "intro-side" }, [table])
       ]),
