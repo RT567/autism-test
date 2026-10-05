@@ -12,7 +12,7 @@ Rob wanted the Now You See Me reveal to land later, so the early items no longer
 3. C-07 Comfort media — film reference removed; now "…For example, a film or series of films that you
    returned to again and again."
 4. D-11 Facial recognition (Eisenberg line-up) — moved from position 2
-5. E-14 Behavioural inventory — "Often considered yourself the smartest in the room" replaced with
+5. E-14 Behavioural inventory — "Explained what the Eye is" cut later the same day as too niche. "Often considered yourself the smartest in the room" replaced with
    "Performed a card trick for someone who had said no" (it duplicated the new Q2). Still tick-all.
 6. F-22 Enjoyment of Now You See Me (1–10) — unchanged
 

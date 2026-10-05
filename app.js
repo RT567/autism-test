@@ -92,7 +92,6 @@
       html: "Have you ever done any of the following?",
       help: "Select all that apply.",
       options: [
-        "Explained what “the Eye” is to someone who did not ask",
         "Said “the closer you look, the less you see” aloud, in a non-magic context",
         "Assigned members of your family to the Four Horsemen",
         "Watched <cite>Now You See Me 2</cite> (2016) and defended it",
