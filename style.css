@@ -714,6 +714,16 @@ legend { padding: 0; }
   .mark { width: 42px; height: 42px; }
 }
 
+/* ---------- single-column report: chart straight after the score ---------- */
+@media (max-width: 959px) {
+  .report-grid { display: flex; flex-direction: column; }
+  .report-side { display: contents; }
+  .result-head { order: 0; }
+  .report-main { order: 1; margin-bottom: 24px; }
+  .interp { order: 2; }
+  .nextsteps { order: 3; }
+}
+
 /* ---------- phones ---------- */
 @media (max-width: 560px) {
   main { padding: 16px 12px 28px; }
@@ -723,7 +733,13 @@ legend { padding: 0; }
   .face-ref img { width: 96px; }
   .scale { grid-template-columns: repeat(5, 1fr); }
   .scale span { height: 50px; }
-  .result-head { grid-template-columns: 1fr; gap: 12px; }
+  .result-head { grid-template-columns: auto 1fr; gap: 6px 18px; padding-bottom: 14px; margin-bottom: 16px; }
+  .result-head .score { font-size: 3rem; }
+  .result-head .band { font-size: 0.7rem; padding: 3px 8px; margin-bottom: 6px; }
+  .sheet-body > .eyebrow { margin-bottom: 6px; }
+  .sheet-body > h1 { font-size: 1.45rem; margin-bottom: 12px; }
+  .figure-sub { margin-bottom: 8px; }
+  .interp p, .nextsteps li { font-size: 0.88rem; }
   .nav .ack-slot { order: -1; flex-basis: 100%; }
   .ack { text-align: left; }
   .meta-table { font-size: 0.85rem; margin-bottom: 18px; }

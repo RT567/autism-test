@@ -22,3 +22,11 @@ Score = the Q6 rating, exactly. Rob considered a composite (most people land ~7)
 r = 1.00 chart joke needs "You" to sit on the line. Q1–Q5 remain unscored set dressing.
 
 `TOTAL` is 6; `renderResult` reads `answers.q6`. Asset version bumped to `?v=11`.
+
+## Mobile report: chart above the fold
+
+Rob: people saw the number on mobile and stopped, never reaching the Figure 1 joke. Below 960px the
+report now goes score → chart → interpretation → next steps (`.report-side { display: contents }` +
+flex `order`), and on phones the score head is a compact two-column row with a smaller h1 and smaller
+interpretation text. At 390×844 the whole chart ends at y≈724, so it's on screen when the report
+appears. Desktop (≥960px, side-by-side) is unchanged. Assets now `?v=12`.
